@@ -16,24 +16,14 @@ function App() {
 
 	return (
 		<>
-			<section id="center">
-				<div className="hero">
-					<img src={heroImg} className="base" width="170" height="179" alt="" />
-					<img src={reactLogo} className="framework" alt="React logo" />
-					<img src={viteLogo} className="vite" alt="Vite logo" />
-				</div>
-				<div>
-					<h1>Get started</h1>
-					<p>
-						Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-					</p>
-				</div>
-				<button className="counter" onClick={() => setCount((count) => count + 1)}>
-					Count is {count}
-				</button>
-				<p>hello</p>
-			</section>
-
+			<header className="header">
+				<Link to="/home">
+					<h1>dmclink's Blog</h1>
+				</Link>
+				<p>some login thing or username here</p>
+			</header>
+			<div className="ticks"></div>
+			<section id="spacer"></section>
 			<PostSummariesProvider>
 				<Routes>
 					<Route path="/" element={<Landing />}></Route>
@@ -41,11 +31,6 @@ function App() {
 					<Route path="/post/:postId" element={<Post />}></Route>
 				</Routes>
 			</PostSummariesProvider>
-
-			<div className="ticks"></div>
-
-			<div className="ticks"></div>
-			<section id="spacer"></section>
 		</>
 	);
 }

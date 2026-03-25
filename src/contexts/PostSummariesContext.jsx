@@ -1,49 +1,24 @@
-import axios from 'axios';
 import { createContext, useContext, useEffect, useCallback, useState } from 'react';
+
+import useFetch from '../hooks/useFetch.js';
 
 const PostSummariesContext = createContext([]);
 
 function PostSummariesProvider({ children }) {
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(null);
-	const [posts, setPosts] = useState([]);
-	const [refreshTrigger, setRefreshTrigger] = useState(0);
+	const { isLoading, error, data: postsData, refreshData: refreshPosts } = useFetch('posts');
 
-	const fetchData = useCallback(async () => {
-		setIsLoading(true);
-		setError(null);
-		try {
-			const resp = await axios.get('http://localhost:5173/api/posts');
-			if (resp.status !== 200) {
-				throw new Error('fetching posts failed ');
-			}
-
-			if (!resp.data.success) {
-				throw new Error(resp.error.message);
-			}
-
-			setPosts(resp.data.data.posts);
-		} catch (err) {
-			setError(err.message);
-			setPosts([]);
-		} finally {
-			setIsLoading(false);
-		}
-	}, []);
-
-	useEffect(() => {
-		fetchData();
-	}, [fetchData, refreshTrigger]);
-
-	const refreshData = () => {
-		setRefreshTrigger((prev) => prev + 1);
-	};
+	const posts =
+		postsData &&
+		postsData.posts.reduce((map, post) => {
+			map.set(post.id, post);
+			return map;
+		}, new Map());
 
 	const contextValue = {
 		posts,
 		isLoading,
 		error,
-		refreshData,
+		refreshPosts,
 	};
 
 	return <PostSummariesContext.Provider value={contextValue}>{children}</PostSummariesContext.Provider>;
