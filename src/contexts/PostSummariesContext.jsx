@@ -5,7 +5,7 @@ import useFetch from '../hooks/useFetch.js';
 const PostSummariesContext = createContext([]);
 
 function PostSummariesProvider({ children }) {
-	const { isLoading, error, data: postsData, refreshData: refreshPosts } = useFetch('posts');
+	const { isLoading, error, data: postsData, refreshData: refreshPosts } = useFetch('/posts');
 
 	const posts =
 		postsData &&

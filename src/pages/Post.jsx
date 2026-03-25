@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { usePostSummariesContext } from '../contexts/PostSummariesContext.jsx';
 
@@ -9,13 +7,10 @@ function Post(props) {
 	const context = usePostSummariesContext();
 	const { postId } = useParams();
 	const postHeader = context.posts && context.posts.get(Number(postId));
-	console.log({ postHeader });
 
-	const endpoint = 'posts/view/' + postId;
+	const endpoint = '/posts/view/' + postId;
 	const { data: postResp, isLoading, error, refreshData: refreshPost } = useFetch(endpoint);
 	const post = postResp && postResp.post;
-
-	console.log(post && post.comments);
 
 	return (
 		<div>
@@ -25,6 +20,8 @@ function Post(props) {
 					<p>Created: {postHeader.created_at}</p>
 				</header>
 			)}
+			<div className="ticks"></div>
+			<section id="spacer"></section>
 			{post && (
 				<div>
 					<p>Last Updated: {post.updated_at}</p>
@@ -34,8 +31,6 @@ function Post(props) {
 			)}
 			{isLoading && <p>fetching posts...</p>}
 			{error && <p className="error-message">{error}</p>}
-			<div className="ticks"></div>
-			<section id="spacer"></section>
 			<footer>
 				<p>
 					Back to view all <Link to="/home">posts</Link>
