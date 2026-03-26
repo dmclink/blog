@@ -14,7 +14,7 @@ function CommentForm(props) {
 
 	const canComment = user && user.canComment;
 
-	const { postData, error, isLoading, data } = usePost('/comments/create');
+	const { postData } = usePost('/comments/create');
 
 	const toggleIsWriting = () => {
 		setIsWritingComment((prev) => !prev);
@@ -23,7 +23,7 @@ function CommentForm(props) {
 	const handleClick = async (e) => {
 		e.preventDefault();
 		try {
-			const respData = await postData({ post_id: props.postId, content: commentTextAreaRef.current.value });
+			await postData({ post_id: props.postId, content: commentTextAreaRef.current.value });
 			props.refreshPost();
 			toggleIsWriting();
 			setPostError(null);
