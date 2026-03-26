@@ -14,7 +14,7 @@ function Landing() {
 				miss coding in Go, hopefully I can get back to it soon.
 			</p>
 			<p>
-				<Link to="/home">Go to home</Link>
+				Go to read <Link to="/home">all posts</Link>
 			</p>
 		</section>
 	);
