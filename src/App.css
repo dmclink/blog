@@ -1,7 +1,16 @@
-html {
+body {
 	min-height: 100vh;
 	padding: 2rem;
 	border: ridge 20px rgba(0, 0, 0, 0.4);
+	display: flex;
+	flex-direction: column;
+}
+
+/*dont confuse this with :root, this is the React root element direct child of body*/
+#root {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
 .header {
@@ -10,33 +19,12 @@ html {
 	align-items: center;
 }
 
-#spacer {
-	height: 88px;
-	border-top: 1px solid var(--border);
+.spacer {
+	height: 1px;
+	border-top: 1px solid var(--text);
+	margin-block: 8px;
 	@media (max-width: 1024px) {
-		height: 48px;
-	}
-}
-
-.ticks {
-	position: relative;
-	width: 100%;
-
-	&::before,
-	&::after {
-		content: '';
-		position: absolute;
-		top: -4.5px;
-		border: 5px solid transparent;
-	}
-
-	&::before {
-		left: 0;
-		border-left-color: var(--border);
-	}
-	&::after {
-		right: 0;
-		border-right-color: var(--border);
+		height: 1px;
 	}
 }
 
@@ -50,9 +38,30 @@ html {
 	justify-content: space-between;
 }
 
+.post {
+	position: relative;
+	flex-grow: 1;
+}
+
 .post-link {
 	display: flex;
 	justify-content: space-between;
 	gap: 1.5rem;
 	font-size: 1.2rem;
+}
+
+.post-header {
+	background-color: var(--block-bg);
+	border-bottom: 1px solid var(--border);
+	padding: 1rem;
+}
+
+.post-content-section,
+.post-comments-section {
+	padding: 1rem;
+}
+
+.post footer {
+	position: absolute;
+	bottom: 0;
 }

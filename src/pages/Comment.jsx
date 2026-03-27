@@ -1,4 +1,5 @@
 import { formatDateString } from '../lib/stringUtils';
+
 function Comment({ comment }) {
 	return (
 		<article className="comment" key={comment.id}>

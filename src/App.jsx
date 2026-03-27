@@ -42,8 +42,7 @@ function App() {
 					</div>
 				)}
 			</header>
-			<div className="ticks"></div>
-			<section id="spacer"></section>
+			<div className="spacer"></div>
 			<PostSummariesProvider>
 				<Routes>
 					<Route path="/" element={<Landing />}></Route>

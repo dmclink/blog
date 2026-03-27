@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { usePostSummariesContext } from '../contexts/PostSummariesContext.jsx';
-import { useAuth } from '../contexts/AuthContext.jsx';
 
 import { formatDateString } from '../lib/stringUtils.js';
 
@@ -9,7 +7,7 @@ import useFetch from '../hooks/useFetch.js';
 
 import CommentSection from './CommentSection.jsx';
 
-function Post(props) {
+function Post() {
 	const { postId } = useParams();
 	const postsContext = usePostSummariesContext();
 	const postHeader = postsContext.posts && postsContext.posts.get(Number(postId));
@@ -19,20 +17,18 @@ function Post(props) {
 	const post = postResp && postResp.post;
 
 	return (
-		<div>
+		<div className="post">
 			{postHeader && (
-				<header>
+				<header className="post-header">
 					<h1>{postHeader.title}</h1>
 					<p>Created: {formatDateString(postHeader.created_at)}</p>
+					{post && <p>Updated: {formatDateString(post.updated_at)}</p>}
 				</header>
 			)}
-			<div className="ticks"></div>
-			<section id="spacer"></section>
 			{post && (
-				<div>
-					<p>Last Updated: {formatDateString(post.updated_at)}</p>
+				<section className="post-content-section">
 					<p>{post.content}</p>
-				</div>
+				</section>
 			)}
 			<CommentSection comments={post && post.comments} postId={postId} refreshPost={refreshPost} />
 			{isLoading && <p>fetching posts...</p>}
