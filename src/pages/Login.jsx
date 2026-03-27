@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
 	const { user, login, error: loginError } = useAuth();
-	const navigate = useNavigate();
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -13,9 +11,7 @@ function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const success = await login(username, password);
-		if (success) {
-			navigate('/home');
-		} else {
+		if (!success) {
 			alert('incorrect username or password');
 		}
 	};
