@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx';
 import Post from './pages/Post.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
+import Write from './pages/Write.jsx';
 
 import { PostSummariesProvider } from './contexts/PostSummariesContext.jsx';
 import { useAuth } from './contexts/AuthContext.jsx';
@@ -31,6 +32,7 @@ function App() {
 				{user && user.isLoggedIn() ? (
 					<div>
 						<div>Welcome {user.username}</div>
+						{user.canPost && <Link to="/write">Write</Link>}
 						<button type="button" onClick={logout}>
 							Logout
 						</button>
@@ -56,6 +58,8 @@ function App() {
 					<Route path="/post/:postId" element={<Post />}></Route>
 					<Route path="/login" element={<Login />}></Route>
 					<Route path="/register" closeLoginMenu={closeLoginMenu} element={<Register />}></Route>
+					<Route path="/write" element={<Write />}></Route>
+					<Route path="/write/:postId" element={<Write />}></Route>
 				</Routes>
 			</PostSummariesProvider>
 		</div>

@@ -10,13 +10,13 @@ body {
 #root {
 	display: flex;
 	flex-direction: column;
-	flex-grow: 1;
 }
 
 .app-container {
 	width: 100%;
 	max-width: 80ch;
 	margin: 0 auto;
+	flex-grow: 1;
 }
 
 .header {
@@ -101,9 +101,14 @@ body {
 	gap: 1rem;
 }
 
-.add-comment-form textarea {
+textarea,
+input {
 	border: 1px solid var(--border);
 	resize: none;
+
+	&:focus {
+		outline: 3px solid var(--text);
+	}
 }
 
 .comment-btn {
@@ -126,4 +131,19 @@ body {
 
 .comments-verify-cta {
 	margin-bottom: 1rem;
+}
+.write-section {
+	height: 100%;
+}
+.write-form {
+	display: flex;
+	flex-direction: column;
+}
+.write-form label {
+	display: flex;
+	flex-direction: column;
+}
+
+.write-content-label {
+	flex-grow: 1;
 }
