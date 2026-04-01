@@ -14,5 +14,5 @@ export default defineConfig({
 		},
 	},
 	plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
-	base: '/blog',
+	base: '/blog/',
 });
