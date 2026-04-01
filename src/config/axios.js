@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = 'https://personal-blog-server-production-de35.up.railway.app/api';
 
 console.log('BASE_URL:', BASE_URL);
 const client = axios.create({
