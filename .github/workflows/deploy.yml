@@ -23,3 +23,5 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
+          publish_dir: ./dist
+          token: ${{ secrets.ACCESS_TOKEN }}
